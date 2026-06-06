@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { ZoneCarousel } from "./components/ZoneCarousel";
 import { ZoneModal } from "./components/ZoneModal";
+import { WelcomeScreen } from "./components/WelcomeScreen";
 import { useTodoStore } from "./hooks/useTodoStore";
+import { hasSeenWelcome, markWelcomeSeen } from "./hooks/useWelcome";
 import "./App.css";
 
 function App() {
   const [showNewZone, setShowNewZone] = useState(false);
   const [showEditZone, setShowEditZone] = useState(false);
+  const [showWelcome, setShowWelcome] = useState(() => !hasSeenWelcome());
   const {
     zones,
     activeZone,
@@ -18,6 +21,11 @@ function App() {
     deleteTodo,
     goToZone,
   } = useTodoStore();
+
+  function dismissWelcome() {
+    markWelcomeSeen();
+    setShowWelcome(false);
+  }
 
   return (
     <div className="app">
@@ -76,6 +84,8 @@ function App() {
         initialName={activeZone.name}
         initialColor={activeZone.color}
       />
+
+      {showWelcome && <WelcomeScreen onContinue={dismissWelcome} />}
     </div>
   );
 }

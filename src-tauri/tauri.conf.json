@@ -12,6 +12,7 @@
   "app": {
     "windows": [
       {
+        "label": "main",
         "title": "Todoer",
         "width": 480,
         "height": 720,

@@ -7,13 +7,13 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "tauri": "tauri"
+    "tauri": "tauri",
+    "icons": "python3 scripts/round_icon.py && sips -z 32 32 app-icon.png --out public/favicon.png && sips -z 180 180 app-icon.png --out public/apple-touch-icon.png && tauri icon app-icon.png"
   },
   "dependencies": {
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "@tauri-apps/api": "^2",
-    "@tauri-apps/plugin-opener": "^2"
+    "@tauri-apps/api": "^2"
   },
   "devDependencies": {
     "@types/react": "^19.1.8",
